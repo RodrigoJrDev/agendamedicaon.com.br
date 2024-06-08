@@ -1,8 +1,8 @@
 <div class="create-your-profile">
 	<div class="container  min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-		<form id="doctorForm" enctype="multipart/form-data">
+		<form id="patientForm" enctype="multipart/form-data">
 			<div class="row">
-				<h4 class="mb-3">Dados do Médico</h4>
+				<h4 class="mb-3">Dados do Paciente</h4>
 				<div class="col-lg-8">
 					<div class="row">
 						<div class="col-lg-6">
@@ -38,12 +38,6 @@
 						</div>
 						<div class="col-lg-4">
 							<div class="form-floating mb-3">
-								<input type="text" class="form-control" id="crm" name="crm" required placeholder="CRM">
-								<label for="crm">CRM</label>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="form-floating mb-3">
 								<input type="text" class="form-control" id="genero" name="genero" required placeholder="Gênero">
 								<label for="genero">Gênero</label>
 							</div>
@@ -52,12 +46,6 @@
 							<div class="form-floating mb-3">
 								<input type="date" class="form-control" id="data_nascimento" name="data_nascimento" required placeholder="Data de Nascimento">
 								<label for="data_nascimento">Data de Nascimento</label>
-							</div>
-						</div>
-						<div class="col-lg-12">
-							<div class="form-floating mb-3">
-								<textarea class="form-control" id="bio" name="bio" placeholder="Biografia"></textarea>
-								<label for="bio">Biografia</label>
 							</div>
 						</div>
 					</div>
@@ -98,45 +86,6 @@
 							<div class="form-floating mb-3">
 								<input type="text" class="form-control" id="complemento" name="complemento" placeholder="Complemento">
 								<label for="complemento">Complemento</label>
-							</div>
-						</div>
-					</div>
-					<!-- Disponibilidades e Especialidades -->
-					<h4>Disponibilidades e Especialidades</h4>
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="form-group position-relative">
-								<label for="horarios">Horários Disponíveis</label>
-								<div id="horarios-container">
-									<div class="row mb-2 horario-row">
-										<div class="col-md-4">
-											<div class="form-floating">
-												<input type="date" class="form-control" name="data_disponivel[]" required>
-												<label for="data_disponivel">Data Disponível</label>
-											</div>
-										</div>
-										<div class="col-md-4">
-											<div class="form-floating">
-												<input type="time" class="form-control" name="hora_inicio[]" required>
-												<label for="hora_inicio">Hora Início</label>
-											</div>
-										</div>
-										<div class="col-md-4">
-											<div class="form-floating">
-												<input type="time" class="form-control" name="hora_fim[]" required>
-												<label for="hora_fim">Hora Fim</label>
-											</div>
-										</div>
-									</div>
-								</div>
-								<button type="button" class="btn btn-primary mt-2" id="add-horario">Adicionar Horário</button>
-							</div>
-						</div>
-						<div class="col-lg-12 mt-4">
-							<div class="form-group">
-								<label for="especialidades">Especialidades</label>
-								<select class="form-control" id="especialidades" name="especialidades[]" multiple="multiple" style="width: 100%;">
-								</select>
 							</div>
 						</div>
 					</div>
@@ -191,7 +140,7 @@
 		}
 	});
 
-	$("#doctorForm").submit(function(e) {
+	$("#patientForm").submit(function(e) {
 		e.preventDefault();
 		var formData = new FormData(this);
 		if (uploadedFile) {
@@ -199,7 +148,7 @@
 		}
 
 		$.ajax({
-			url: "<?= base_url(); ?>Entrar/cadastrarMedicoXHR",
+			url: "<?= base_url(); ?>Entrar/cadastrarPacienteXHR",
 			type: "POST",
 			dataType: "json",
 			data: formData,
@@ -216,7 +165,7 @@
 				if (data.status) {
 					swal({
 						className: "swal-custom",
-						title: "Médico cadastrado com sucesso!",
+						title: "Paciente cadastrado com sucesso!",
 						text: data.message,
 						icon: "success",
 						button: "OK",
@@ -225,7 +174,7 @@
 					});
 				} else {
 					bootbox.alert({
-						title: "Erro ao cadastrar médico!",
+						title: "Erro ao cadastrar paciente!",
 						message: data.message,
 					});
 				}
@@ -284,56 +233,5 @@
 			input.attr("type", "password");
 			$(this).find("i").removeClass("fa-eye-slash").addClass("fa-eye");
 		}
-	});
-
-	$(document).ready(function() {
-		$('#especialidades').select2({
-			placeholder: 'Selecione ou adicione especialidades',
-			tags: true,
-			ajax: {
-				url: '<?= base_url(); ?>Especialidades/getEspecialidades',
-				dataType: 'json',
-				delay: 250,
-				data: function(params) {
-					return {
-						q: params.term // search term
-					};
-				},
-				processResults: function(data) {
-					return {
-						results: data
-					};
-				},
-				cache: true
-			}
-		});
-	});
-
-	$(document).ready(function() {
-		$('#add-horario').click(function() {
-			var horarioRow = `
-            <div class="row mb-2 horario-row">
-                <div class="col-md-4">
-                    <div class="form-floating">
-                        <input type="date" class="form-control" name="data_disponivel[]" required>
-                        <label for="data_disponivel">Data Disponível</label>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-floating">
-                        <input type="time" class="form-control" name="hora_inicio[]" required>
-                        <label for="hora_inicio">Hora Início</label>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-floating">
-                        <input type="time" class="form-control" name="hora_fim[]" required>
-                        <label for="hora_fim">Hora Fim</label>
-                    </div>
-                </div>
-            </div>
-        `;
-			$('#horarios-container').append(horarioRow);
-		});
 	});
 </script>
