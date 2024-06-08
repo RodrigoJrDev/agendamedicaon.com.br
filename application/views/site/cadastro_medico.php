@@ -101,6 +101,45 @@
 							</div>
 						</div>
 					</div>
+					<!-- Disponibilidades e Especialidades -->
+					<h4>Disponibilidades e Especialidades</h4>
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="form-group position-relative">
+								<label for="horarios">Horários Disponíveis</label>
+								<div id="horarios-container">
+									<div class="row mb-2 horario-row">
+										<div class="col-md-4">
+											<div class="form-floating">
+												<input type="date" class="form-control" name="data_disponivel[]" required>
+												<label for="data_disponivel">Data Disponível</label>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-floating">
+												<input type="time" class="form-control" name="hora_inicio[]" required>
+												<label for="hora_inicio">Hora Início</label>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-floating">
+												<input type="time" class="form-control" name="hora_fim[]" required>
+												<label for="hora_fim">Hora Fim</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<button type="button" class="btn btn-primary mt-2" id="add-horario">Adicionar Horário</button>
+							</div>
+						</div>
+						<div class="col-lg-12 mt-4">
+							<div class="form-group">
+								<label for="especialidades">Especialidades</label>
+								<select class="form-control" id="especialidades" name="especialidades[]" multiple="multiple" style="width: 100%;">
+								</select>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="mb-3">
@@ -119,23 +158,6 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label for="especialidades">Especialidades</label>
-						<select class="form-control" id="especialidades" name="especialidades[]" multiple="multiple" style="width: 100%;">
-						</select>
-					</div>
-					<div class="form-group position-relative">
-						<label for="horarios">Horários Disponíveis</label>
-						<div id="horarios-container">
-							<div class="input-group date datetimepicker mb-2" data-target-input="nearest">
-								<input type="text" class="form-control datetimepicker-input" data-target=".datetimepicker" placeholder="Selecione a data e horário disponíveis" readonly />
-								<div class="input-group-append" data-target=".datetimepicker" data-toggle="datetimepicker">
-									<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-								</div>
-							</div>
-						</div>
-						<button type="button" class="btn btn-primary mt-2" id="add-horario">Adicionar Horário</button>
 					</div>
 				</div>
 			</div>
@@ -177,7 +199,7 @@
 		}
 
 		$.ajax({
-			url: "<?= base_url(); ?>Medico/cadastrarXHR",
+			url: "<?= base_url(); ?>Entrar/cadastrarMedicoXHR",
 			type: "POST",
 			dataType: "json",
 			data: formData,
@@ -206,9 +228,6 @@
 						title: "Erro ao cadastrar médico!",
 						message: data.message,
 					});
-					// Atualizar token CSRF
-					var newCsrfToken = data.MAPOS_TOKEN;
-					$("input[name='<?= $this->security->get_csrf_token_name(); ?>']").val(newCsrfToken);
 				}
 			},
 			error: function() {
@@ -291,44 +310,30 @@
 	});
 
 	$(document).ready(function() {
-		moment.locale('pt-br');
-
-		// Inicializa o datetimepicker
-		function initializeDatetimepicker(selector) {
-			$(selector).datetimepicker({
-				locale: 'pt-br',
-				format: 'HH:mm - DD/MM/YYYY',
-				stepping: 15,
-				useCurrent: false,
-				icons: {
-					time: 'fa fa-clock',
-					date: 'fa fa-calendar',
-					up: 'fa fa-chevron-up',
-					down: 'fa fa-chevron-down',
-					previous: 'fa fa-chevron-left',
-					next: 'fa fa-chevron-right',
-					today: 'fa fa-screenshot',
-					clear: 'fa fa-trash',
-					close: 'fa fa-remove'
-				}
-			});
-		}
-
-		// Inicializa o primeiro datetimepicker
-		initializeDatetimepicker('.datetimepicker');
-
-		// Adiciona um novo campo de horário
 		$('#add-horario').click(function() {
-			var newDatetimepicker = $(
-				'<div class="input-group date datetimepicker mb-2" data-target-input="nearest">' +
-				'<input type="text" class="form-control datetimepicker-input" data-target=".datetimepicker" placeholder="Selecione a data e horário disponíveis" readonly />' +
-				'<div class="input-group-append" data-target=".datetimepicker" data-toggle="datetimepicker">' +
-				'<div class="input-group-text"><i class="fa fa-calendar"></i></div>' +
-				'</div>' +
-				'</div>'
-			);
-			$('#horarios-container').append(newDatetimepicker);
-			initializeDatetimepicker(newDatetimepicker);
+			var horarioRow = `
+            <div class="row mb-2 horario-row">
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="date" class="form-control" name="data_disponivel[]" required>
+                        <label for="data_disponivel">Data Disponível</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="time" class="form-control" name="hora_inicio[]" required>
+                        <label for="hora_inicio">Hora Início</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="time" class="form-control" name="hora_fim[]" required>
+                        <label for="hora_fim">Hora Fim</label>
+                    </div>
+                </div>
+            </div>
+        `;
+			$('#horarios-container').append(horarioRow);
 		});
 	});
 </script>

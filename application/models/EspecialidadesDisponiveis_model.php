@@ -1,5 +1,5 @@
 <?php
-class Administracao_model extends CI_Model
+class EspecialidadesDisponiveis_model extends CI_Model
 {
 	/**
 	 * author: Rodrigo Junior
@@ -29,8 +29,8 @@ class Administracao_model extends CI_Model
 
 	public function getById($id)
 	{
-		$this->db->from('administracao');
-		$this->db->select('administracao.*');
+		$this->db->from('especialidades_disponiveis');
+		$this->db->select('especialidades_disponiveis.*');
 		$this->db->where('id', $id);
 		$this->db->limit(1);
 		return $this->db->get()->row();
@@ -72,5 +72,14 @@ class Administracao_model extends CI_Model
 	public function count($table)
 	{
 		return $this->db->count_all($table);
+	}
+
+	public function searchEspecialidades($term)
+	{
+		if ($term) {
+			$this->db->like('nome', $term);
+		}
+		$query = $this->db->get('especialidades_disponiveis');
+		return $query->result();
 	}
 }

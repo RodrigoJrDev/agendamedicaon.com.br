@@ -1,5 +1,5 @@
 <?php
-class GerenciarEmpresas_model extends CI_Model
+class Horarios_model extends CI_Model
 {
 	/**
 	 * author: Rodrigo Junior
@@ -23,22 +23,14 @@ class GerenciarEmpresas_model extends CI_Model
 
 		$query = $this->db->get();
 
-		if ($one) {
-			// Retorna a linha como um array associativo
-			$result = $query->row_array();
-		} else {
-			// Retorna todas as linhas como um array de arrays associativos
-			$result = $query->result_array();
-		}
-
+		$result = !$one ? $query->result_array() : $query->row();
 		return $result;
 	}
 
-
 	public function getById($id)
 	{
-		$this->db->from('empresas');
-		$this->db->select('empresas.*');
+		$this->db->from('horarios_disponiveis');
+		$this->db->select('horarios_disponiveis.*');
 		$this->db->where('id', $id);
 		$this->db->limit(1);
 		return $this->db->get()->row();
@@ -80,5 +72,14 @@ class GerenciarEmpresas_model extends CI_Model
 	public function count($table)
 	{
 		return $this->db->count_all($table);
+	}
+
+	public function searchEspecialidades($term)
+	{
+		if ($term) {
+			$this->db->like('nome', $term);
+		}
+		$query = $this->db->get('especialidades_disponiveis');
+		return $query->result();
 	}
 }
