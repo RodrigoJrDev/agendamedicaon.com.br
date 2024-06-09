@@ -24,6 +24,7 @@
 	<script type="text/javascript" src="<?= base_url(); ?>assets/libs/maskmoney/js/maskmoney.js"></script>
 	<script type="text/javascript" src="<?= base_url(); ?>assets/libs/validate/js/validate.js"></script>
 	<script type="text/javascript" src="<?= base_url(); ?>assets/libs/jquerymask/js/jquery.mask.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 	<script type="text/javascript" src="<?= base_url(); ?>assets/js/main.js"></script>
 </head>
 
@@ -33,25 +34,16 @@
 
 		<nav class="navbar-top fixed-top navbar navbar-expand">
 			<div class="container-fluid">
-				<div class="logo">
-					<a href="<?= base_url(); ?>" title="Voltar para página inicial">
-						<img src="<?= base_url(); ?>assets/img/logo.png" alt="Logo da empresa - Agenda Médica ON">
-					</a>
+				<div class="logo-sistema">
+					<h1 class="logo me-auto"><a href="index.html"><?= $_ENV["APP_NAME"]; ?></a></h1>
 				</div>
-				<div class="input-pesquisa">
-					<form>
-						<input class="form-control search-input fuzzy-search rounded-pill form-control-sm" type="search" placeholder="Pesquisar...">
-					</form>
-				</div>
+
 				<div class="assets-topo">
 					<div class="switch-theme">
 						<i class="fa-solid fa-sun"></i>
 					</div>
-					<div class="menu-notificao">
-						<i class="fa-solid fa-bell"></i>
-					</div>
 					<div class="menu-pessoal">
-						<img class="rounded-circle icon-user" src="<?= base_url(); ?>assets/img/upload/icons-users/<?= $this->session->userdata["imagem_usuario"]; ?>" alt="Foto do <?= $this->session->userdata["nome"]; ?>">
+						<img class="rounded-circle icon-user" src="<?= base_url(); ?>assets/upload/imgs-medicos/<?= $this->session->userdata["imagem_usuario"]; ?>" alt="Foto do <?= $this->session->userdata["nome"]; ?>">
 					</div>
 				</div>
 			</div>

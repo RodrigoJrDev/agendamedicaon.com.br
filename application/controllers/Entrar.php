@@ -276,4 +276,11 @@ class Entrar extends CI_Controller
 		// Se não encontrar nos dois
 		echo json_encode(array("status" => false, "message" => "E-mail ou senha incorretos!"));
 	}
+
+	public function Logout()
+	{
+		$this->session->sess_destroy();
+		redirect('Entrar');
+	}
+
 }

@@ -17,6 +17,7 @@ class Sistema extends MY_Controller
 		$this->load->helper('date');
 		$this->load->model('Medico_model');
 		$this->load->model('Paciente_model');
+		$this->load->model('Consulta_model');
 	}
 
 	public function index()
@@ -33,7 +34,13 @@ class Sistema extends MY_Controller
 				),
 			);
 
-			$this->data['medico'] = $this->Medico_model->getById($this->session->userdata('id'));
+			// Obtenha os dados necessários
+			$id_medico = $this->session->userdata('id');
+			$this->data['total_pacientes'] = $this->Paciente_model->get_total_pacientes_atendidos($id_medico);
+			$this->data['consultas_feitas'] = $this->Consulta_model->get_total_consultas_feitas($id_medico);
+			$this->data['consultas_canceladas'] = $this->Consulta_model->get_total_consultas_canceladas($id_medico);
+			$this->data['proxima_consulta'] = $this->Consulta_model->get_proxima_consulta($id_medico);
+			$this->data['medico'] = $this->Medico_model->getById($id_medico);
 			$this->data['view'] = 'medico/index';
 		} elseif ($this->session->userdata('permissao') == 'paciente') {
 			$this->data['breadcrumb'] = array(

@@ -1802,16 +1802,25 @@ section {
 nav.navbar-top.fixed-top.navbar.navbar-expand {
 	border-bottom: var(--sistema-theme-border);
 	background: var(--bs-body-bg);
+	padding: 20px 0px;
 }
-nav.navbar-top .logo img {
-	width: 260px;
+nav.navbar-top .logo-sistema h1 {
+	font-size: 30px;
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+	font-family: "Poppins", sans-serif;
 }
 .navbar-top input.search-input {
 	width: 330px;
 	padding: 5px 20px;
 }
 .navbar-top img.icon-user {
-	width: 50px;
+	width: 65px;
+	height: 65px;
+	object-fit: cover;
 }
 .navbar-top .assets-topo {
 	display: flex;

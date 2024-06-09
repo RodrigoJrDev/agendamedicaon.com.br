@@ -14,7 +14,7 @@
 				</li>
 				<li>
 					<a href="<?= base_url(); ?>Pacientes" title="Pacientes">
-						<i class="fa-solid fa-users"></i> Pacientes
+						<i class="fa-solid fa-users"></i> Pacientes Atendidos
 					</a>
 				</li>
 				<li>

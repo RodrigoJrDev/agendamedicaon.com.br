@@ -1,5 +1,5 @@
 <?php
-class Paciente_model extends CI_Model
+class Consulta_model extends CI_Model
 {
 	/**
 	 * author: Rodrigo Junior
@@ -74,18 +74,29 @@ class Paciente_model extends CI_Model
 		return $this->db->count_all($table);
 	}
 
-	public function get_by_email($email)
-	{
-		$this->db->where('email', $email);
-		$query = $this->db->get('pacientes');
-		return $query->row();
-	}
 
-
-	public function get_total_pacientes_atendidos($id_medico)
+	public function get_total_consultas_feitas($id_medico)
 	{
 		$this->db->where('id_medico', $id_medico);
+		$this->db->where('status', 'feita');
 		$this->db->from('consultas');
 		return $this->db->count_all_results();
+	}
+
+	public function get_total_consultas_canceladas($id_medico)
+	{
+		$this->db->where('id_medico', $id_medico);
+		$this->db->where('status', 'cancelada');
+		$this->db->from('consultas');
+		return $this->db->count_all_results();
+	}
+
+	public function get_proxima_consulta($id_medico)
+	{
+		$this->db->where('id_medico', $id_medico);
+		$this->db->where('data_consulta >=', date('Y-m-d H:i:s'));
+		$this->db->order_by('data_consulta', 'ASC');
+		$query = $this->db->get('consultas', 1);
+		return $query->row();
 	}
 }
