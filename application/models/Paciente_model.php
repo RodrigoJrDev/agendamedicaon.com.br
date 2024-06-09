@@ -74,12 +74,10 @@ class Paciente_model extends CI_Model
 		return $this->db->count_all($table);
 	}
 
-	public function searchEspecialidades($term)
+	public function get_by_email($email)
 	{
-		if ($term) {
-			$this->db->like('nome', $term);
-		}
-		$query = $this->db->get('especialidades_disponiveis');
-		return $query->result();
+		$this->db->where('email', $email);
+		$query = $this->db->get('pacientes');
+		return $query->row();
 	}
 }

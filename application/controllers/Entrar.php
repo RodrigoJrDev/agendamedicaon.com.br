@@ -238,4 +238,40 @@ class Entrar extends CI_Controller
 		$this->load->view('template/site/head', $this->data);
 		$this->load->view('template/site/conteudo');
 	}
+
+
+	public function LoginSistema()
+	{
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
+
+		// Verifica nos médicos
+		$medico = $this->Medico_model->get_by_email($email);
+		if ($medico && password_verify($password, $medico->senha)) {
+			$this->session->set_userdata([
+				'id' => $medico->id,
+				'nome' => $medico->nome_completo,
+				'email' => $medico->email,
+				'status' => 'medico'
+			]);
+			echo json_encode(array("status" => true, "message" => "Login bem-sucedido!"));
+			return;
+		}
+
+		// Verifica nos pacientes
+		$paciente = $this->Paciente_model->get_by_email($email);
+		if ($paciente && password_verify($password, $paciente->senha)) {
+			$this->session->set_userdata([
+				'id' => $paciente->id,
+				'nome' => $paciente->nome_completo,
+				'email' => $paciente->email,
+				'status' => 'paciente'
+			]);
+			echo json_encode(array("status" => true, "message" => "Login bem-sucedido!"));
+			return;
+		}
+
+		// Se não encontrar nos dois
+		echo json_encode(array("status" => false, "message" => "E-mail ou senha incorretos!"));
+	}
 }

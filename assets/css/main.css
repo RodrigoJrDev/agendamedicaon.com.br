@@ -1757,3 +1757,12 @@ section {
 .datetimepicker {
 	margin-bottom: 10px;
 }
+.eye-pass {
+	position: relative;
+}
+.eye-pass i {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	cursor: pointer;
+}

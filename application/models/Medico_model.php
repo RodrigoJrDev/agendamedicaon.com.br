@@ -82,4 +82,12 @@ class Medico_model extends CI_Model
 		$query = $this->db->get('especialidades_disponiveis');
 		return $query->result();
 	}
+
+	public function get_by_email($email)
+    {
+        $this->db->where('email', $email);
+        $query = $this->db->get('medicos');
+        return $query->row();
+    }
+
 }
