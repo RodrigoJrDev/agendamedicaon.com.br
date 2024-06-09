@@ -18,7 +18,11 @@ $config['app_subname'] = $_ENV['APP_SUBNAME'];
 |--------------------------------------------------------------------------
 */
 
-$config['base_url'] = $_ENV['APP_BASEURL'];
+if (isset($_ENV['APP_BASEURL'])) {
+	$config['base_url'] = $_ENV['APP_BASEURL'];
+} else {
+	$config['base_url'] = 'http://localhost/agendamedicaon.com.br/';
+}
 
 /*
 |--------------------------------------------------------------------------
