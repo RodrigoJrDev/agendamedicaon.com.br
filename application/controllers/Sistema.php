@@ -39,6 +39,7 @@ class Sistema extends MY_Controller
 			$this->data['total_pacientes'] = $this->Paciente_model->get_total_pacientes_atendidos($id_medico);
 			$this->data['consultas_feitas'] = $this->Consulta_model->get_total_consultas_feitas($id_medico);
 			$this->data['consultas_canceladas'] = $this->Consulta_model->get_total_consultas_canceladas($id_medico);
+			$this->data['consultas_solicitadas'] = $this->Consulta_model->get_consultas_solicitadas($id_medico);
 			$this->data['proxima_consulta'] = $this->Consulta_model->get_proxima_consulta($id_medico);
 			$this->data['medico'] = $this->Medico_model->getById($id_medico);
 			$this->data['view'] = 'medico/index';

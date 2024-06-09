@@ -128,4 +128,39 @@ class Consulta_model extends CI_Model
 		}
 		return $data;
 	}
+
+	public function get_consultas_solicitadas($id_medico)
+	{
+		$this->db->select('
+				consultas.id,
+				consultas.data_consulta,
+				consultas.observacoes,
+				pacientes.nome_completo AS nome_paciente,
+				especialidades_disponiveis.nome AS especialidade
+		');
+		$this->db->from('consultas');
+		$this->db->join('pacientes', 'pacientes.id = consultas.id_paciente');
+		$this->db->join('especialidades_disponiveis', 'especialidades_disponiveis.id = consultas.id_especialidade');
+		$this->db->where('consultas.id_medico', $id_medico);
+		$this->db->where('consultas.id_status', 1);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	public function updateStatus($id_consulta, $status)
+	{
+		$this->db->where('id', $id_consulta);
+		$this->db->update('consultas', ['id_status' => $status]);
+	}
+
+	public function getConsultaById($id)
+	{
+		$this->db->select('consultas.*, pacientes.email AS email_paciente, especialidades_disponiveis.nome AS especialidade');
+		$this->db->from('consultas');
+		$this->db->join('pacientes', 'pacientes.id = consultas.id_paciente');
+		$this->db->join('especialidades_disponiveis', 'especialidades_disponiveis.id = consultas.id_especialidade');
+		$this->db->where('consultas.id', $id);
+		$query = $this->db->get();
+		return $query->row();
+	}
 }

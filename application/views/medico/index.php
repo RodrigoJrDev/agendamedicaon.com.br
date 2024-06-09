@@ -34,6 +34,22 @@
 	</div>
 </div>
 
+<div class="card mb-3">
+	<div class="card-body">
+		<h5 class="card-title">Consultas Solicitadas</h5>
+		<?php foreach ($consultas_solicitadas as $consulta) : ?>
+			<div class="consulta-item mb-3">
+				<p class="card-text">Nome do Paciente: <?= $consulta->nome_paciente ?></p>
+				<p class="card-text">Data e Hora: <?= date('d/m/Y H:i', strtotime($consulta->data_consulta)) ?></p>
+				<p class="card-text">Especialidade: <?= $consulta->especialidade ?></p>
+				<p class="card-text">Observações: <?= $consulta->observacoes ?></p>
+				<button class="btn btn-success aceitar-consulta" data-id="<?= $consulta->id ?>">Aceitar</button>
+				<button class="btn btn-danger negar-consulta" data-id="<?= $consulta->id ?>">Negar</button>
+			</div>
+			<hr>
+		<?php endforeach; ?>
+	</div>
+</div>
 
 <div class="row">
 	<div class="col-12">
@@ -69,7 +85,7 @@
 		var options = {
 			series: [{
 				name: 'Consultas',
-				data: [] 
+				data: []
 			}],
 			chart: {
 				height: 350,
@@ -109,7 +125,7 @@
 
 		// Carregar dados via AJAX
 		$.ajax({
-		url: '<?= base_url(); ?>Sistema/getConsultasDatas', 
+			url: '<?= base_url(); ?>Sistema/getConsultasDatas',
 			method: 'GET',
 			dataType: 'json',
 			success: function(response) {
@@ -126,6 +142,81 @@
 			error: function() {
 				console.error("Erro ao carregar os dados do gráfico.");
 			}
+		});
+	});
+</script>
+
+
+<script>
+	$(document).ready(function() {
+		$('.aceitar-consulta').click(function() {
+			var consultaId = $(this).data('id');
+			var button = $(this);
+			button.prop('disabled', true).text('Enviando e-mail para o paciente...');
+
+			$.post("<?= base_url('consultas/aceitarConsulta') ?>", {
+				id: consultaId
+			}, function(response) {
+				button.prop('disabled', false).text('Aceitar');
+				if (response.status === "success") {
+					swal({
+						icon: 'success',
+						title: 'Consulta aceita com sucesso!',
+						showConfirmButton: false,
+						timer: 2000
+					}).then(() => {
+						location.reload();
+					});
+				} else {
+					swal({
+						icon: 'error',
+						title: 'Erro ao aceitar a consulta!',
+						text: response.message,
+					});
+				}
+			}, 'json').fail(function() {
+				button.prop('disabled', false).text('Aceitar');
+				swal({
+					icon: 'error',
+					title: 'Erro ao aceitar a consulta!',
+					text: 'Ocorreu um erro ao processar a solicitação.',
+				});
+			});
+		});
+
+		$('.negar-consulta').click(function() {
+			var consultaId = $(this).data('id');
+			var button = $(this);
+			button.prop('disabled', true).text('Enviando e-mail para o paciente...');
+
+			$.post("<?= base_url('consultas/negarConsulta') ?>", {
+				id: consultaId
+			}, function(response) {
+				button.prop('disabled', false).text('Negar');
+				if (response.status === "success") {
+					swal({
+						icon: 'success',
+						title: 'Consulta negada com sucesso!',
+						showConfirmButton: false,
+						timer: 2000
+					}).then(() => {
+						location.reload();
+					});
+				} else {
+					swal({
+						icon: 'error',
+						title: 'Erro ao negar a consulta!',
+						text: response.message,
+					});
+				}
+			}, 'json').fail(function() {
+				button.prop('disabled', false).text('Negar');
+				swal({
+					icon: 'error',
+					title: 'Erro ao negar a consulta!',
+					text: 'Ocorreu um erro ao processar a solicitação.',
+				});
+			});
 		});
 	});
 </script>
