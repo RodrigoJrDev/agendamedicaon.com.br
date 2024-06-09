@@ -252,7 +252,8 @@ class Entrar extends CI_Controller
 				'id' => $medico->id,
 				'nome' => $medico->nome_completo,
 				'email' => $medico->email,
-				'permissao' => 'medico'
+				'imagem_usuario' => $medico->imagem_usuario,
+				'permissao' => 'medico',
 			]);
 			echo json_encode(array("status" => true, "message" => "Login bem-sucedido!"));
 			return;
@@ -265,7 +266,8 @@ class Entrar extends CI_Controller
 				'id' => $paciente->id,
 				'nome' => $paciente->nome_completo,
 				'email' => $paciente->email,
-				'permissao' => 'paciente'
+				'imagem_usuario' => $paciente->imagem_usuario,
+				'permissao' => 'paciente',
 			]);
 			echo json_encode(array("status" => true, "message" => "Login bem-sucedido!"));
 			return;

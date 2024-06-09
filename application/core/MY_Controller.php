@@ -2,23 +2,36 @@
 
 class MY_Controller extends CI_Controller
 {
-   
-    public function __construct()
-    {
-        parent::__construct();
+	protected $data = [];
 
-        if ((!session_id()) || (!$this->session->userdata('logado'))) {
-            redirect('Login');
-        }
-        // $this->load_configuration();
-    }
+	public function __construct()
+	{
+		parent::__construct();
 
-    public function layout()
-    {
-        // load views
-        $this->load->view('template/admin/topo', $this->data);
-        $this->load->view('template/admin/menu');
-        $this->load->view('template/admin/conteudo');
-        $this->load->view('template/admin/rodape');
-    }
+		if (!$this->session->userdata('id')) {
+			redirect('Entrar');
+		}
+
+		// dados comuns
+		$this->data['nome'] = $this->session->userdata('nome');
+		$this->data['email'] = $this->session->userdata('email');
+		$this->data['permissao'] = $this->session->userdata('permissao');
+	}
+
+	public function layout()
+	{
+		if ($this->data['permissao'] == 'medico') {
+			$this->load->view('template/medico/topo', $this->data);
+			$this->load->view('template/medico/menu');
+			$this->load->view('template/medico/conteudo');
+			$this->load->view('template/medico/rodape');
+		} elseif ($this->data['permissao'] == 'paciente') {
+			$this->load->view('template/paciente/topo', $this->data);
+			$this->load->view('template/paciente/menu');
+			$this->load->view('template/paciente/conteudo');
+			$this->load->view('template/paciente/rodape');
+		} else {
+			redirect('Entrar');
+		}
+	}
 }
