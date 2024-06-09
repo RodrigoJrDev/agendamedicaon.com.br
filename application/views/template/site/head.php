@@ -36,7 +36,7 @@
 	<header id="header" class="fixed-top">
 		<div class="container d-flex align-items-center">
 
-			<h1 class="logo me-auto"><a href="index.html"><?= $_ENV["APP_NAME"]; ?></a></h1>
+			<h1 class="logo me-auto"><a href=""><?= $_ENV["APP_NAME"]; ?></a></h1>
 
 
 			<nav id="navbar" class="navbar order-last order-lg-0">

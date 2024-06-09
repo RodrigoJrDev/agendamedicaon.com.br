@@ -42,6 +42,12 @@
 
 $route['default_controller'] = 'Index';
 $route['404_override'] = '';
+$route['api/login'] = 'api/login';
+$route['api/register'] = 'api/register';
+$route['api/especialidades'] = 'api/especialidades';
+$route['api/medicos'] = 'api/medicos';
+$route['api/horarios'] = 'api/horarios';
+$route['api/solicitar_agendamento'] = 'api/solicitar_agendamento';
 
 
 
