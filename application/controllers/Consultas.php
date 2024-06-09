@@ -2,8 +2,6 @@
 	exit('No direct script access allowed');
 }
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 class Consultas extends MY_Controller
 {

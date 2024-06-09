@@ -35,65 +35,6 @@ $(document).ready(function () {
 	}
 });
 
-// List Tables
-$(document).ready(function () {
-	var options = {
-		valueNames: ["nome", "email"],
-		page: 100,
-		pagination: true,
-	};
-
-	var userList = new List("table-administracao", options);
-});
-
-$(document).ready(function () {
-	var options = {
-		valueNames: ["number", "usuario", "tarefa", "horario"],
-		page: 100,
-		pagination: true,
-	};
-
-	var userList = new List("table-auditoria", options);
-});
-
-$(document).ready(function () {
-	var options = {
-		valueNames: ["nome", "cnpj", "razao"],
-		page: 100,
-		pagination: true,
-	};
-
-	var userList = new List("table-empresa", options);
-});
-
-// Checked all inputs
-$(document).ready(function () {
-	$("#check-all").click(function () {
-		$("input[type=checkbox]").prop("checked", $(this).prop("checked"));
-	});
-
-	// Usando Shift para selecionar vários checkboxes
-	var lastChecked = null;
-	var $chkboxes = $("input[type=checkbox]");
-	$chkboxes.click(function (e) {
-		if (!lastChecked) {
-			lastChecked = this;
-			return;
-		}
-
-		if (e.shiftKey) {
-			var start = $chkboxes.index(this);
-			var end = $chkboxes.index(lastChecked);
-
-			$chkboxes
-				.slice(Math.min(start, end), Math.max(start, end) + 1)
-				.prop("checked", lastChecked.checked);
-		}
-
-		lastChecked = this;
-	});
-});
-
 // Jquery Mask
 $(document).ready(function () {
 	$("#date").mask("00/00/0000");

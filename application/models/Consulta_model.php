@@ -183,4 +183,24 @@ class Consulta_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+	public function getPacientesAtendidos($id_medico)
+	{
+		$this->db->select('
+			pacientes.id,
+			pacientes.nome_completo,
+			pacientes.email,
+			pacientes.celular,
+			consultas.data_consulta,
+			especialidades_disponiveis.nome AS especialidade
+		');
+		$this->db->from('consultas');
+		$this->db->join('pacientes', 'pacientes.id = consultas.id_paciente');
+		$this->db->join('especialidades_disponiveis', 'especialidades_disponiveis.id = consultas.id_especialidade');
+		$this->db->where('consultas.id_medico', $id_medico);
+		$this->db->where('consultas.id_status', 2); // Status de consultas aceitas e concluídas
+		$this->db->order_by('consultas.data_consulta', 'ASC');
+		$query = $this->db->get();
+		return $query->result();
+	}
 }
