@@ -18,7 +18,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="<?= base_url(); ?>Login/logout" title="Deslogar">
+					<a href="<?= base_url(); ?>Entrar/logout" title="Deslogar">
 						<i class="fa-solid fa-power-off"></i> Deslogar
 					</a>
 				</li>

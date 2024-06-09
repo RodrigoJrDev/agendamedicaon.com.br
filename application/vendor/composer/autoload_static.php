@@ -7,9 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInit60b5019595e826604f12082af98afd3c
 {
     public static $files = array (
+        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -24,11 +25,6 @@ class ComposerStaticInit60b5019595e826604f12082af98afd3c
         's' => 
         array (
             'setasign\\Fpdi\\' => 14,
-        ),
-        'c' => 
-        array (
-            'chillerlan\\Settings\\' => 20,
-            'chillerlan\\QRCode\\' => 18,
         ),
         'W' => 
         array (
@@ -54,16 +50,26 @@ class ComposerStaticInit60b5019595e826604f12082af98afd3c
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\Console\\' => 26,
         ),
+        'R' => 
+        array (
+            'React\\Stream\\' => 13,
+            'React\\Socket\\' => 13,
+            'React\\Promise\\' => 14,
+            'React\\EventLoop\\' => 16,
+            'React\\Dns\\' => 10,
+            'React\\ChildProcess\\' => 19,
+            'React\\Cache\\' => 12,
+        ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
-            'Piggly\\Pix\\' => 11,
             'PhpOption\\' => 10,
             'PhpOffice\\PhpWord\\' => 18,
             'PhpCsFixer\\' => 11,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'M' => 
         array (
@@ -83,7 +89,12 @@ class ComposerStaticInit60b5019595e826604f12082af98afd3c
         ),
         'F' => 
         array (
+            'Fidry\\CpuCoreCounter\\' => 21,
             'Faker\\' => 6,
+        ),
+        'E' => 
+        array (
+            'Evenement\\' => 10,
         ),
         'D' => 
         array (
@@ -95,6 +106,7 @@ class ComposerStaticInit60b5019595e826604f12082af98afd3c
             'Composer\\XdebugHandler\\' => 23,
             'Composer\\Semver\\' => 16,
             'Composer\\Pcre\\' => 14,
+            'Clue\\React\\NDJson\\' => 18,
         ),
     );
 
@@ -102,14 +114,6 @@ class ComposerStaticInit60b5019595e826604f12082af98afd3c
         'setasign\\Fpdi\\' => 
         array (
             0 => __DIR__ . '/..' . '/setasign/fpdi/src',
-        ),
-        'chillerlan\\Settings\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/chillerlan/php-settings-container/src',
-        ),
-        'chillerlan\\QRCode\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/chillerlan/php-qrcode/src',
         ),
         'Whoops\\' => 
         array (
@@ -183,6 +187,34 @@ class ComposerStaticInit60b5019595e826604f12082af98afd3c
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'React\\Stream\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/stream/src',
+        ),
+        'React\\Socket\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/socket/src',
+        ),
+        'React\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/promise/src',
+        ),
+        'React\\EventLoop\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/event-loop/src',
+        ),
+        'React\\Dns\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/dns/src',
+        ),
+        'React\\ChildProcess\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/child-process/src',
+        ),
+        'React\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/cache/src',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/src',
@@ -199,10 +231,6 @@ class ComposerStaticInit60b5019595e826604f12082af98afd3c
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
-        'Piggly\\Pix\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/piggly/php-pix/src',
-        ),
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
@@ -214,6 +242,10 @@ class ComposerStaticInit60b5019595e826604f12082af98afd3c
         'PhpCsFixer\\' => 
         array (
             0 => __DIR__ . '/..' . '/friendsofphp/php-cs-fixer/src',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Mpdf\\QrCode\\' => 
         array (
@@ -243,9 +275,17 @@ class ComposerStaticInit60b5019595e826604f12082af98afd3c
         array (
             0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
         ),
+        'Fidry\\CpuCoreCounter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fidry/cpu-core-counter/src',
+        ),
         'Faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
+        ),
+        'Evenement\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/evenement/evenement/src',
         ),
         'Dotenv\\' => 
         array (
@@ -266,6 +306,10 @@ class ComposerStaticInit60b5019595e826604f12082af98afd3c
         'Composer\\Pcre\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/pcre/src',
+        ),
+        'Clue\\React\\NDJson\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/clue/ndjson-react/src',
         ),
     );
 

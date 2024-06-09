@@ -39,12 +39,13 @@ class Medico_model extends CI_Model
 	public function add($table, $data)
 	{
 		$this->db->insert($table, $data);
-		if ($this->db->affected_rows() == '1') {
-			return true;
+		if ($this->db->affected_rows() == 1) {
+			return $this->db->insert_id(); 
 		}
 
 		return false;
 	}
+
 
 	public function edit($table, $data, $fieldID, $ID)
 	{
@@ -84,10 +85,9 @@ class Medico_model extends CI_Model
 	}
 
 	public function get_by_email($email)
-    {
-        $this->db->where('email', $email);
-        $query = $this->db->get('medicos');
-        return $query->row();
-    }
-
+	{
+		$this->db->where('email', $email);
+		$query = $this->db->get('medicos');
+		return $query->row();
+	}
 }

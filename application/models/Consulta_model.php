@@ -78,7 +78,7 @@ class Consulta_model extends CI_Model
 	public function get_total_consultas_feitas($id_medico)
 	{
 		$this->db->where('id_medico', $id_medico);
-		$this->db->where('status', 'feita');
+		$this->db->where('id_status', 3);
 		$this->db->from('consultas');
 		return $this->db->count_all_results();
 	}
@@ -86,17 +86,46 @@ class Consulta_model extends CI_Model
 	public function get_total_consultas_canceladas($id_medico)
 	{
 		$this->db->where('id_medico', $id_medico);
-		$this->db->where('status', 'cancelada');
+		$this->db->where('id_status', 4);
 		$this->db->from('consultas');
 		return $this->db->count_all_results();
 	}
 
 	public function get_proxima_consulta($id_medico)
 	{
-		$this->db->where('id_medico', $id_medico);
-		$this->db->where('data_consulta >=', date('Y-m-d H:i:s'));
-		$this->db->order_by('data_consulta', 'ASC');
-		$query = $this->db->get('consultas', 1);
-		return $query->row();
+		$this->db->select('
+        consultas.data_consulta,
+        consultas.observacoes,
+        pacientes.nome_completo AS nome_paciente,
+        especialidades_disponiveis.nome AS especialidade
+    ');
+		$this->db->from('consultas');
+		$this->db->join('pacientes', 'pacientes.id = consultas.id_paciente');
+		$this->db->join('especialidades_disponiveis', 'especialidades_disponiveis.id = consultas.id_especialidade');
+		$this->db->where('consultas.id_medico', $id_medico);
+		$this->db->where('consultas.id_status', 2); // Status de aceitada pelo médico
+		$this->db->where('consultas.data_consulta >=', date('Y-m-d H:i:s'));
+		$this->db->order_by('consultas.data_consulta', 'ASC');
+		$this->db->limit(1);
+		$query = $this->db->get();
+		return $query->row_array();
+	}
+
+	public function get_consultas_por_mes()
+	{
+		$query = $this->db->query("
+		SELECT DATE_FORMAT(data_consulta, '%b') as mes, COUNT(*) as total
+		FROM consultas
+		WHERE YEAR(data_consulta) = YEAR(CURDATE())
+		GROUP BY MONTH(data_consulta)
+		ORDER BY MONTH(data_consulta)
+	");
+
+		$result = $query->result();
+		$data = [];
+		foreach ($result as $row) {
+			$data[$row->mes] = $row->total;
+		}
+		return $data;
 	}
 }

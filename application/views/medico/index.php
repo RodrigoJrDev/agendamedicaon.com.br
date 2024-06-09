@@ -6,7 +6,7 @@
 					<h5 class="card-title">Total de Pacientes Atendidos</h5>
 					<i class="fa-solid fa-user-check fa-2x"></i>
 				</div>
-				<p class="card-text display-4" id="total-pacientes">0</p>
+				<p class="card-text display-4" id="total-pacientes"><?= $total_pacientes; ?></p>
 			</div>
 		</div>
 	</div>
@@ -17,7 +17,7 @@
 					<h5 class="card-title">Consultas Feitas</h5>
 					<i class="fa-solid fa-calendar-check fa-2x"></i>
 				</div>
-				<p class="card-text display-4" id="consultas-feitas">0</p>
+				<p class="card-text display-4" id="consultas-feitas"><?= $consultas_feitas; ?></p>
 			</div>
 		</div>
 	</div>
@@ -28,45 +28,48 @@
 					<h5 class="card-title">Consultas Canceladas</h5>
 					<i class="fa-solid fa-calendar-times fa-2x"></i>
 				</div>
-				<p class="card-text display-4" id="consultas-canceladas">0</p>
+				<p class="card-text display-4" id="consultas-canceladas"><?= $consultas_canceladas; ?></p>
 			</div>
 		</div>
 	</div>
 </div>
 
+
 <div class="row">
 	<div class="col-12">
-		<div class="card mb-3">
-			<div class="card-body">
-				<h5 class="card-title">Próxima Consulta</h5>
-				<div id="proxima-consulta">
-					<p class="card-text">Nome do Paciente: <span id="nome-paciente">Fulano de Tal</span></p>
-					<p class="card-text">Data e Hora: <span id="data-hora-consulta">01/01/2024 10:00</span></p>
-					<p class="card-text">Especialidade: <span id="especialidade-consulta">Cardiologia</span></p>
+		<?php if (!empty($proxima_consulta)) { ?>
+			<div class="card mb-3">
+				<div class="card-body">
+					<h5 class="card-title">Próxima Consulta</h5>
+					<div id="proxima-consulta">
+						<p class="card-text">Nome do Paciente: <?= $proxima_consulta["nome_paciente"]; ?></p>
+						<p class="card-text">Data e Hora: <?= date('d/m/Y H:i', strtotime($proxima_consulta["data_consulta"])); ?></p>
+						<p class="card-text">Especialidade: <?= $proxima_consulta["especialidade"]; ?></p>
+						<p class="card-text">Observações: <?= $proxima_consulta["observacoes"]; ?></p>
+					</div>
 				</div>
 			</div>
-		</div>
+		<?php } else { ?>
+			<div class="alert alert-info mb-3 " role="alert">
+				<h3>Não há consultas agendadas.</h3>
+			</div>
+		<?php } ?>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-12">
-		<div id="chart"></div>
+		<div id="chart" class="box-chart"></div>
 	</div>
 </div>
-</main>
-<script>
-	document.addEventListener("DOMContentLoaded", function() {
-		// Dados estáticos para demonstração
-		document.getElementById('total-pacientes').innerText = 120;
-		document.getElementById('consultas-feitas').innerText = 300;
-		document.getElementById('consultas-canceladas').innerText = 20;
 
-		// Configuração do gráfico ApexCharts
+
+<script>
+	$(document).ready(function() {
 		var options = {
 			series: [{
 				name: 'Consultas',
-				data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+				data: [] 
 			}],
 			chart: {
 				height: 350,
@@ -83,20 +86,46 @@
 			},
 			title: {
 				text: 'Consultas ao longo do tempo',
-				align: 'left'
+				align: 'left',
+				style: {
+					fontSize: '20px',
+					fontWeight: 'bold',
+					color: '#263238'
+				}
 			},
 			grid: {
 				row: {
-					colors: ['#f3f3f3', 'transparent'],
+					colors: ['#f3f3f3', 'transparent'], // alterna entre cinza e transparente
 					opacity: 0.5
 				},
 			},
 			xaxis: {
-				categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+				categories: [], // Categorias serão carregadas via AJAX
 			}
 		};
 
 		var chart = new ApexCharts(document.querySelector("#chart"), options);
 		chart.render();
+
+		// Carregar dados via AJAX
+		$.ajax({
+		url: '<?= base_url(); ?>Sistema/getConsultasDatas', 
+			method: 'GET',
+			dataType: 'json',
+			success: function(response) {
+				chart.updateSeries([{
+					name: 'Consultas',
+					data: response.data
+				}]);
+				chart.updateOptions({
+					xaxis: {
+						categories: response.categories
+					}
+				});
+			},
+			error: function() {
+				console.error("Erro ao carregar os dados do gráfico.");
+			}
+		});
 	});
 </script>

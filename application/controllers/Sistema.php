@@ -62,4 +62,16 @@ class Sistema extends MY_Controller
 
 		return $this->layout();
 	}
+
+	public function getConsultasDatas()
+	{
+		$data = $this->Consulta_model->get_consultas_por_mes();
+
+		$response = [
+			'categories' => array_keys($data),
+			'data' => array_values($data)
+		];
+
+		echo json_encode($response);
+	}
 }

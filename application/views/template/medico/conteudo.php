@@ -1,4 +1,4 @@
-		<div class="content">
+	<div class="content-system">
 			<div id="breadcrumb">
 				<nav class="mb-2" aria-label="breadcrumb">
 					<ol class="breadcrumb mb-0">

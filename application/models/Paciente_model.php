@@ -84,8 +84,9 @@ class Paciente_model extends CI_Model
 
 	public function get_total_pacientes_atendidos($id_medico)
 	{
+		$this->db->select('COUNT(DISTINCT id_paciente) as total_pacientes');
 		$this->db->where('id_medico', $id_medico);
-		$this->db->from('consultas');
-		return $this->db->count_all_results();
+		$query = $this->db->get('consultas');
+		return $query->row()->total_pacientes;
 	}
 }
