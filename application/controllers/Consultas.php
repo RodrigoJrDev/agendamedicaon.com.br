@@ -25,6 +25,34 @@ class Consultas extends MY_Controller
 		$this->load->library('EmailSender');
 	}
 
+	public function index()
+	{
+		// Verifica permissão de acesso
+		if ($this->session->userdata('permissao') != 'medico') {
+			$this->session->sess_destroy();
+			redirect('Entrar');
+		}
+
+		$this->data['breadcrumb'] = array(
+			array(
+				"link" => base_url(),
+				"nome" => "Início"
+			),
+			array(
+				"link" => base_url('Consultas'),
+				"nome" => "Consultas"
+			),
+		);
+
+		$id_medico = $this->session->userdata('id');
+		$this->data['consultas'] = $this->Consulta_model->getConsultas($id_medico);
+
+		$this->data['view'] = 'medico/consultas';
+
+		return $this->layout();
+	}
+
+
 	public function aceitarConsulta()
 	{
 		$id_consulta = $this->input->post('id');

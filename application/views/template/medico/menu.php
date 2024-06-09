@@ -3,7 +3,7 @@
 		<div class="menu">
 			<ul class="menu-links">
 				<li>
-					<a href="<?= base_url(); ?>" title="Início">
+					<a href="<?= base_url(); ?>Sistema" title="Início">
 						<i class="fa-solid fa-house"></i> Início
 					</a>
 				</li>

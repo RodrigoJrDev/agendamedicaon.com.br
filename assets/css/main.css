@@ -2173,3 +2173,10 @@ input.select2-search__field:focus-visible {
 .box-chart text {
 	color: #082744;
 }
+
+/* Consultas */
+.consultas h2 {
+	font-size: 24px;
+	font-weight: 700;
+	margin-bottom: 15px;
+}
