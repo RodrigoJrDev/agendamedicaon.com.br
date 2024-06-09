@@ -1781,7 +1781,6 @@ section {
 	text-decoration: none;
 }
 
-
 /*--------------------------------------------------------------
 # Sistema
 --------------------------------------------------------------*/
@@ -1848,7 +1847,9 @@ nav.navbar-top .logo-sistema h1 {
 .navbar-top .switch-theme i {
 	color: var(--sistema-theme-control-toggle-color);
 }
-
+nav.navbar-top.fixed-top.navbar.navbar-expand .logo-sistema a {
+	font-size: 22px !important;
+}
 /* Sidebar */
 #sidebar {
 	display: flex;
@@ -1923,7 +1924,7 @@ nav.navbar-top .logo-sistema h1 {
 
 /* Página Inicial */
 
-.content {
+.content-system {
 	min-height: 100vh;
 	background: var(--sistema-theme-background);
 	margin-top: 81px;
@@ -2160,4 +2161,15 @@ input.select2-search__field:focus-visible {
 .dropdown-item.active,
 .dropdown-item:active {
 	background-color: var(--sistema-theme-background);
+}
+
+/* chart */
+.box-chart {
+	background: var(--bs-body-bg);
+	border: var(--sistema-theme-border);
+	border-radius: 8px;
+	padding: 20px;
+}
+.box-chart text {
+	color: #082744;
 }
