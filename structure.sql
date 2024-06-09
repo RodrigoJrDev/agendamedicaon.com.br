@@ -45,7 +45,7 @@ CREATE TABLE `consultas` (
   `id_medico` int(11) NOT NULL,
   `id_paciente` int(11) NOT NULL,
   `id_status` int(11) NOT NULL,
-  `id_especilidade` int(11) NOT NULL,
+  `id_especialidade` int(11) NOT NULL,
   `data_consulta` datetime NOT NULL,
   `observacoes` text DEFAULT NULL,
   PRIMARY KEY (`id`)
