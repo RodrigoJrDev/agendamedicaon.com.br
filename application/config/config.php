@@ -18,11 +18,17 @@ $config['app_subname'] = $_ENV['APP_SUBNAME'];
 |--------------------------------------------------------------------------
 */
 
-if (isset($_ENV['APP_BASEURL'])) {
-	$config['base_url'] = $_ENV['APP_BASEURL'];
-} else {
+$ips_list_localhost = array(
+	"127.0.0.1",
+	"::1"
+);
+
+if(in_array($_SERVER["REMOTE_ADDR"], $ips_list_localhost)){
 	$config['base_url'] = 'http://localhost/agendamedicaon.com.br/';
+} else {
+	$config['base_url'] = $_ENV['APP_BASEURL'];
 }
+
 
 /*
 |--------------------------------------------------------------------------
