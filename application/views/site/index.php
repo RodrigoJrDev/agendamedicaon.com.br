@@ -1,7 +1,7 @@
 <section id="hero" class="d-flex align-items-center">
 	<div class="container">
 		<h1>BEM-VINDO AO AGENDA MEDICA ON</h1>
-		<h2>Somos uma plataforma inovadora de agendamento de consultas médicas, facilitando a comunicação entre médicos e pacientes</h2>
+		<h2>Somos uma plataforma inovadora de agendamento de consultas médicas, facilitando <br> a comunicação entre médicos e pacientes.</h2>
 		<a href="#about" class="btn-get-started scrollto">Get Started</a>
 	</div>
 </section>
@@ -11,7 +11,7 @@
 		<div class="row">
 			<div class="col-lg-4 d-flex align-items-stretch">
 				<div class="content">
-					<h3>Por que escolher o AgendaMedicaOn?</h3>
+					<h3>Por que escolher o Agenda Médica ON?</h3>
 					<p>
 						Nosso sistema é intuitivo e fácil de navegar, permitindo que você agende consultas com apenas alguns cliques. Acesse o histórico de consultas, horários disponíveis e informações de contato de seus médicos rapidamente.
 					</p>
@@ -58,7 +58,6 @@
 
 		<div class="row">
 			<div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
-				<a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox play-btn mb-4"></a>
 			</div>
 
 			<div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
@@ -138,7 +137,7 @@
 
 		<div class="section-title">
 			<h2>Agendamento Online </h2>
-			<p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+		
 		</div>
 
 		<div class="row">
@@ -273,7 +272,7 @@
 					<div class="tab-pane" id="tab-5">
 						<div class="row gy-4">
 							<div class="col-lg-8 details order-2 order-lg-1">
-								<h3>Oftalmologia/h3>
+								<h3>Oftalmologia</h3>
 								<p>Nosso departamento de cuidados com os olhos está equipado para tratar diversas condições oculares e fornecer serviços de visão abrangentes. Realizamos exames de vista, tratamento de doenças oculares como glaucoma e catarata, cirurgias corretivas e adaptação de lentes de contato. Nossa equipe de oftalmologistas e optometristas está aqui para garantir a saúde dos seus olhos.</p>
 							</div>
 							<div class="col-lg-4 text-center order-1 order-lg-2">
@@ -292,8 +291,7 @@
 	<div class="container">
 
 		<div class="section-title">
-			<h2>Gallery</h2>
-			<p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+			<h2>Galeria</h2>
 		</div>
 	</div>
 
