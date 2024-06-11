@@ -8,6 +8,12 @@ class Api extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Paciente_model');
+		$this->load->model('Especialidades_model');
+		$this->load->model('EspecialidadesDisponiveis_model');
+		$this->load->model('Medico_model');
+		$this->load->model('Horarios_model');
+		$this->load->model('Consulta_model');
+
 		$this->load->helper('url');
 	}
 
@@ -103,9 +109,9 @@ class Api extends CI_Controller
 		echo json_encode($response);
 	}
 
-	public function especialidades()
+	public function getEspecialidadesDisponiveis()
 	{
-		$especialidades = $this->Especialidade_model->get_all();
+		$especialidades = $this->Especialidades_model->getEspecialidadesComNome();
 		echo json_encode($especialidades);
 	}
 
@@ -119,7 +125,7 @@ class Api extends CI_Controller
 	public function horarios()
 	{
 		$medicoId = $this->input->get('medicoId');
-		$horarios = $this->Horario_model->get_disponiveis($medicoId);
+		$horarios = $this->Horarios_model->get_disponiveis($medicoId);
 		echo json_encode($horarios);
 	}
 
@@ -133,8 +139,8 @@ class Api extends CI_Controller
 			'id_medico' => $medicoId,
 			'id_paciente' => $pacienteId,
 			'id_status' => 1, // Status 1 = Solicitada
-			'id_especialidade' => $this->Horario_model->get_especialidade($horarioId),
-			'data_consulta' => $this->Horario_model->get_data_consulta($horarioId),
+			'id_especialidade' => $this->Horarios_model->get_especialidade($horarioId),
+			'data_consulta' => $this->Horarios_model->get_data_consulta($horarioId),
 			'observacoes' => 'Solicitada via aplicativo'
 		);
 

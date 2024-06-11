@@ -90,4 +90,15 @@ class Medico_model extends CI_Model
 		$query = $this->db->get('medicos');
 		return $query->row();
 	}
+
+	public function get_by_especialidade($especialidadeId)
+	{
+			$this->db->select('medicos.id, medicos.nome_completo');
+			$this->db->from('medicos');
+			$this->db->join('especialidades', 'especialidades.id_medico = medicos.id');
+			$this->db->where('especialidades.nome', $especialidadeId);
+			$query = $this->db->get();
+			return $query->result();
+	}
+
 }

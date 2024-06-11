@@ -82,4 +82,21 @@ class Especialidades_model extends CI_Model
 		$query = $this->db->get('especialidades_disponiveis');
 		return $query->result();
 	}
+
+	public function get_all()
+	{
+		$this->db->from('especialidades_disponiveis');
+		$this->db->select('especialidades_disponiveis.*');
+		return $this->db->get()->result();
+	}
+
+	public function getEspecialidadesComNome()
+	{
+		$this->db->select('especialidades.id, especialidades_disponiveis.nome, especialidades.id_medico');
+		$this->db->from('especialidades');
+		$this->db->join('especialidades_disponiveis', 'especialidades_disponiveis.id = especialidades.nome');
+		$this->db->group_by('especialidades_disponiveis.nome, especialidades.id');
+		$query = $this->db->get();
+		return $query->result();
+	}
 }
