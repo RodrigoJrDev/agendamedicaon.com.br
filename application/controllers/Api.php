@@ -19,11 +19,29 @@ class Api extends CI_Controller
 
 	public function login()
 	{
-		$email = $this->input->post('email');
-		$senha = $this->input->post('senha');
+		// Lendo o JSON da requisição
+		$input = json_decode(trim(file_get_contents("php://input")), true);
 
+		// Obtendo e sanitizando entradas
+		$email = filter_var($input['email'], FILTER_SANITIZE_EMAIL);
+		$senha = $input['senha'];
+
+		// Verificando se as entradas não estão vazias
+		if (empty($email) || empty($senha)) {
+			echo json_encode(array("status" => "error", "message" => "Email ou senha não podem estar vazios"));
+			return;
+		}
+
+		// Validando o email
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			echo json_encode(array("status" => "error", "message" => "Email inválido"));
+			return;
+		}
+
+		// Buscando paciente pelo email
 		$paciente = $this->Paciente_model->get_by_email($email);
 
+		// Verificando se o paciente existe e se a senha está correta
 		if ($paciente && password_verify($senha, $paciente->senha)) {
 			echo json_encode(array(
 				"status" => "success",
@@ -40,6 +58,7 @@ class Api extends CI_Controller
 			echo json_encode(array("status" => "error", "message" => "Email ou senha inválidos"));
 		}
 	}
+
 
 	public function register()
 	{
