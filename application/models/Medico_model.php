@@ -96,9 +96,14 @@ class Medico_model extends CI_Model
 			$this->db->select('medicos.id, medicos.nome_completo');
 			$this->db->from('medicos');
 			$this->db->join('especialidades', 'especialidades.id_medico = medicos.id');
-			$this->db->where('especialidades.nome', $especialidadeId);
+			$this->db->join('horarios_disponiveis', 'horarios_disponiveis.id_medico = medicos.id');
+			$this->db->where('especialidades.id', $especialidadeId);
+			$this->db->where('horarios_disponiveis.disponivel', 1);
+			$this->db->where('horarios_disponiveis.data_disponivel >=', date('Y-m-d'));
+			$this->db->group_by('medicos.id');
 			$query = $this->db->get();
 			return $query->result();
 	}
+	
 
 }

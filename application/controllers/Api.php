@@ -111,9 +111,22 @@ class Api extends CI_Controller
 
 	public function getEspecialidadesDisponiveis()
 	{
+		// Obtém todas as especialidades com o nome
 		$especialidades = $this->Especialidades_model->getEspecialidadesComNome();
-		echo json_encode($especialidades);
+
+		$especialidadesDisponiveis = array();
+
+		// Verifica horários disponíveis para cada especialidade
+		foreach ($especialidades as $especialidade) {
+			$horarios = $this->Horarios_model->get_disponiveis_por_especialidade($especialidade->id);
+			if (!empty($horarios)) {
+				$especialidadesDisponiveis[] = $especialidade;
+			}
+		}
+
+		echo json_encode($especialidadesDisponiveis);
 	}
+
 
 	public function medicos()
 	{

@@ -96,7 +96,24 @@ class Especialidades_model extends CI_Model
 		$this->db->from('especialidades');
 		$this->db->join('especialidades_disponiveis', 'especialidades_disponiveis.id = especialidades.nome');
 		$this->db->group_by('especialidades_disponiveis.nome, especialidades.id');
-		$query = $this->db->get();
-		return $query->result();
+
+		$especialidades = $this->db->get()->result();
+
+		$especialidadesDisponiveis = array();
+
+		foreach ($especialidades as $especialidade) {
+			$this->db->select('horarios_disponiveis.*');
+			$this->db->from('horarios_disponiveis');
+			$this->db->where('horarios_disponiveis.id_medico', $especialidade->id_medico);
+			$this->db->where('horarios_disponiveis.disponivel', 1);
+			$this->db->where('horarios_disponiveis.data_disponivel >=', date('Y-m-d'));
+			$query = $this->db->get();
+
+			if ($query->num_rows() > 0) {
+				$especialidadesDisponiveis[] = $especialidade;
+			}
+		}
+
+		return $especialidadesDisponiveis;
 	}
 }
