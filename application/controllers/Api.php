@@ -163,23 +163,44 @@ class Api extends CI_Controller
 
 	public function solicitar_agendamento()
 	{
-		$medicoId = $this->input->post('medicoId');
-		$horarioId = $this->input->post('horarioId');
-		$pacienteId = $this->session->userdata('id'); // Obtém o ID do paciente logado
+		// Lendo os dados da requisição JSON
+		$input = json_decode(trim(file_get_contents("php://input")), true);
 
+		// Obtendo e sanitizando as entradas
+		$medicoId = $input['medicoId'];
+		$horarioId = $input['horarioId'];
+		$pacienteId = $input['pacienteId']; // Receber o ID do paciente diretamente na requisição
+
+		// Verificando se as entradas não estão vazias
+		if (empty($medicoId) || empty($horarioId) || empty($pacienteId)) {
+			echo json_encode(array("status" => "error", "message" => "Dados incompletos para agendamento."));
+			return;
+		}
+
+		// Buscando especialidade e data da consulta
+		$especialidadeId = $this->Horarios_model->get_especialidade($horarioId);
+		$dataConsulta = $this->Horarios_model->get_data_consulta($horarioId);
+
+		// Dados para inserção
 		$data = array(
 			'id_medico' => $medicoId,
 			'id_paciente' => $pacienteId,
 			'id_status' => 1, // Status 1 = Solicitada
-			'id_especialidade' => $this->Horarios_model->get_especialidade($horarioId),
-			'data_consulta' => $this->Horarios_model->get_data_consulta($horarioId),
+			'id_especialidade' => $especialidadeId,
+			'data_consulta' => $dataConsulta,
 			'observacoes' => 'Solicitada via aplicativo'
 		);
 
-		if ($this->Consulta_model->insert($data)) {
-			echo json_encode(array('status' => 'success', 'message' => 'Solicitação realizada com sucesso.'));
-		} else {
+		// Inserir a consulta e atualizar disponibilidade do horário
+		$this->db->trans_start();
+		$this->Consulta_model->insert($data);
+		$this->Horarios_model->update_disponibilidade($horarioId, 0);
+		$this->db->trans_complete();
+
+		if ($this->db->trans_status() === FALSE) {
 			echo json_encode(array('status' => 'error', 'message' => 'Erro ao solicitar agendamento.'));
+		} else {
+			echo json_encode(array('status' => 'success', 'message' => 'Solicitação realizada com sucesso.'));
 		}
 	}
 

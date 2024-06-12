@@ -69,6 +69,11 @@ class Consulta_model extends CI_Model
 		return false;
 	}
 
+	public function insert($data)
+	{
+			return $this->db->insert('consultas', $data); 
+	}
+
 	public function count($table)
 	{
 		return $this->db->count_all($table);

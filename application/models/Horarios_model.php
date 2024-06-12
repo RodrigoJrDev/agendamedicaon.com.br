@@ -106,4 +106,34 @@ class Horarios_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+	public function update_disponibilidade($horarioId, $disponivel)
+	{
+		$this->db->where('id', $horarioId);
+		$this->db->update('horarios_disponiveis', array('disponivel' => $disponivel));
+	}
+
+	public function get_especialidade($horarioId)
+	{
+		$this->db->select('especialidades.id');
+		$this->db->from('horarios_disponiveis');
+		$this->db->join('medicos', 'medicos.id = horarios_disponiveis.id_medico');
+		$this->db->join('especialidades', 'especialidades.id_medico = medicos.id');
+		$this->db->where('horarios_disponiveis.id', $horarioId);
+		$query = $this->db->get();
+		$result = $query->row();
+
+		return $result ? $result->id : null;
+	}
+
+	public function get_data_consulta($horarioId)
+	{
+		$this->db->select('data_disponivel');
+		$this->db->from('horarios_disponiveis');
+		$this->db->where('id', $horarioId);
+		$query = $this->db->get();
+		$result = $query->row();
+
+		return $result ? $result->data_disponivel : null;
+	}
 }
