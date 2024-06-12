@@ -59,16 +59,19 @@ class Api extends CI_Controller
 		}
 	}
 
-
 	public function register()
 	{
+		// Obtém os dados do POST e converte em array
+		$data = json_decode(file_get_contents('php://input'), true);
+
 		// Define as regras de validação
-		$this->form_validation->set_rules('nome_completo', 'Nome Completo', 'trim|required');
+		$this->form_validation->set_data($data);
+		$this->form_validation->set_rules('nomeCompleto', 'Nome Completo', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[pacientes.email]');
 		$this->form_validation->set_rules('cpf', 'CPF', 'trim|required|is_unique[pacientes.cpf]');
 		$this->form_validation->set_rules('celular', 'Celular', 'trim|required');
 		$this->form_validation->set_rules('genero', 'Gênero', 'trim|required');
-		$this->form_validation->set_rules('data_nascimento', 'Data de Nascimento', 'trim|required');
+		$this->form_validation->set_rules('dataNascimento', 'Data de Nascimento', 'trim|required');
 		$this->form_validation->set_rules('cep', 'CEP', 'trim|required');
 		$this->form_validation->set_rules('rua', 'Rua', 'trim|required');
 		$this->form_validation->set_rules('numero', 'Número', 'trim|required');
@@ -77,53 +80,53 @@ class Api extends CI_Controller
 		$this->form_validation->set_rules('complemento', 'Complemento', 'trim');
 
 		if ($this->form_validation->run() == FALSE) {
-			// Envia resposta de erro se a validação falhar
 			$response = array('status' => 'error', 'message' => validation_errors());
 			echo json_encode($response);
 			return;
 		}
 
 		// Verifica se o e-mail já existe
-		if ($this->Paciente_model->get_by_email($this->input->post('email')) !== null) {
+		if ($this->Paciente_model->get_by_email($data['email']) !== null) {
 			$response = array('status' => 'error', 'message' => 'O e-mail já está cadastrado');
 			echo json_encode($response);
 			return;
 		}
 
 		// Verifica se o CPF já existe
-		if ($this->Paciente_model->get_by_cpf($this->input->post('cpf')) !== null) {
+		if ($this->Paciente_model->get_by_cpf($data['cpf']) !== null) {
 			$response = array('status' => 'error', 'message' => 'O CPF já está cadastrado');
 			echo json_encode($response);
 			return;
 		}
 
-		// Obtém os dados do POST
-		$data = array(
-			'nome_completo' => $this->input->post('nome_completo'),
-			'email' => $this->input->post('email'),
-			'cpf' => $this->input->post('cpf'),
-			'celular' => $this->input->post('celular'),
-			'genero' => $this->input->post('genero'),
-			'data_nascimento' => $this->input->post('data_nascimento'),
-			'cep' => $this->input->post('cep'),
-			'rua' => $this->input->post('rua'),
-			'numero' => $this->input->post('numero'),
-			'bairro' => $this->input->post('bairro'),
-			'cidade' => $this->input->post('cidade'),
-			'complemento' => $this->input->post('complemento'),
+
+		$data_bd = array(
+			'nome_completo' => $data['nomeCompleto'],
+			'email' => $data['email'],
+			'cpf' => $data['cpf'],
+			'celular' => $data['celular'],
+			'genero' => $data['genero'],
+			'data_nascimento' => $data['dataNascimento'],
+			'cep' => $data['cep'],
+			'rua' => $data['rua'],
+			'numero' => $data['numero'],
+			'bairro' => $data['bairro'],
+			'cidade' => $data['cidade'],
+			'complemento' => $data['complemento'],
+			'senha' => password_hash($data['senha'], PASSWORD_DEFAULT),
 			'data_criacao' => date('Y-m-d H:i:s')
 		);
 
+
 		// Insere os dados no banco de dados
-		$insert_id = $this->Paciente_model->insert($data);
+		$insert_id = $this->Paciente_model->insert($data_bd);
 
 		if ($insert_id) {
-			// Envia resposta de sucesso se a inserção for bem-sucedida
 			$response = array('status' => 'success', 'message' => 'Cadastro realizado com sucesso');
 		} else {
-			// Envia resposta de erro se a inserção falhar
-			$response = array('status' => 'error', 'message' => 'Erro ao realizar o cadastro');
+			$response = array('status' => 'error', 'message' => 'Erro ao cadastrar paciente');
 		}
+
 
 		echo json_encode($response);
 	}

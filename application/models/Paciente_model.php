@@ -46,6 +46,13 @@ class Paciente_model extends CI_Model
 		return false;
 	}
 
+	public function insert($data)
+	{
+		$this->db->insert('pacientes', $data);
+		return $this->db->insert_id();
+	}
+
+
 	public function edit($table, $data, $fieldID, $ID)
 	{
 		$this->db->where($fieldID, $ID);
