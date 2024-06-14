@@ -116,15 +116,15 @@ class Consulta_model extends CI_Model
 		return $query->row_array();
 	}
 
-	public function get_consultas_por_mes()
+	public function get_consultas_por_mes($id_medico)
 	{
 		$query = $this->db->query("
 		SELECT DATE_FORMAT(data_consulta, '%b') as mes, COUNT(*) as total
 		FROM consultas
-		WHERE YEAR(data_consulta) = YEAR(CURDATE())
+		WHERE id_medico = ? AND YEAR(data_consulta) = YEAR(CURDATE())
 		GROUP BY MONTH(data_consulta)
 		ORDER BY MONTH(data_consulta)
-	");
+	", array($id_medico));
 
 		$result = $query->result();
 		$data = [];

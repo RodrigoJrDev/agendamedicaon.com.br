@@ -66,7 +66,7 @@ class Sistema extends MY_Controller
 
 	public function getConsultasDatas()
 	{
-		$data = $this->Consulta_model->get_consultas_por_mes();
+		$data = $this->Consulta_model->get_consultas_por_mes($this->session->userdata('id'));
 
 		$response = [
 			'categories' => array_keys($data),
