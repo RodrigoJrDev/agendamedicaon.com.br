@@ -222,4 +222,28 @@ class Api extends CI_Controller
 		$result = $query->result();
 		echo json_encode($result);
 	}
+
+	public function consultas_agendadas()
+	{
+		$id_paciente = $this->input->get('id_paciente');
+
+		$this->db->select('consultas.*, consultas_status.status, medicos.nome_completo AS nome_medico, especialidades_disponiveis.nome AS nome_especialidade');
+		$this->db->from('consultas');
+		$this->db->join('consultas_status', 'consultas_status.id = consultas.id_status');
+		$this->db->join('medicos', 'medicos.id = consultas.id_medico');
+		$this->db->join('especialidades', 'especialidades.id = consultas.id_especialidade');
+		$this->db->join('especialidades_disponiveis', 'especialidades_disponiveis.id = especialidades.id');
+		$this->db->where('consultas.id_paciente', $id_paciente);
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0) {
+			$result = $query->result();
+			foreach ($result as &$row) {
+				$row->data_consulta = date("d/m/Y H:i", strtotime($row->data_consulta));
+			}
+			echo json_encode(array('status' => 'success', 'data' => $result));
+		} else {
+			echo json_encode(array('status' => 'error', 'message' => 'Nenhuma consulta encontrada.'));
+		}
+	}
 }
