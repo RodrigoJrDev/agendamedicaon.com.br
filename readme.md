@@ -64,16 +64,6 @@ Para contribuir com o projeto, siga os passos abaixo:
 3. Configure o ambiente:
     - Crie um arquivo `.env` na raiz do projeto e adicione as configurações necessárias (exemplo fornecido no arquivo `.env.example`).
 
-4. Execute as migrações para configurar o banco de dados:
-    ```sh
-    php artisan migrate
-    ```
-
-5. Inicie o servidor de desenvolvimento:
-    ```sh
-    php -S localhost:8000
-    ```
-
 ## Contato
 
 - **LinkedIn**: [Rodrigo Junior](https://www.linkedin.com/in/rodrigo-junior-0128751b4/)
