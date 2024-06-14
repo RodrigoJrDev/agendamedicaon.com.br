@@ -35,7 +35,7 @@
 		<nav class="navbar-top fixed-top navbar navbar-expand">
 			<div class="container-fluid">
 				<div class="logo-sistema">
-					<h1 class="logo me-auto"><a href="index.html"><?= $_ENV["APP_NAME"]; ?></a></h1>
+					<h1 class="logo me-auto"><a href="<?= BASE_URL(); ?>"><?= $_ENV["APP_NAME"]; ?></a></h1>
 				</div>
 
 				<div class="assets-topo">
