@@ -8,14 +8,14 @@ class EmailSender {
 		$mail = new PHPMailer(true);
 		try {
 			$mail->isSMTP();
-			$mail->Host = 'mail.focuspublicidade.com.br';
+			$mail->Host = 'mail.agendamedicaon.com.br';
 			$mail->SMTPAuth = true;
-			$mail->Username = 'dispara-email-site@focuspublicidade.com.br';
-			$mail->Password = 'u_3LVp6E?!j#';
+			$mail->Username = 'sistema@agendamedicaon.com.br';
+			$mail->Password = 'Kcpkk^clpmQ~';
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 			$mail->Port = 587;
 
-			$mail->setFrom('dispara-email-site@focuspublicidade.com.br', 'Agenda Médica ON');
+			$mail->setFrom('sistema@agendamedicaon.com.br', 'Agenda Médica ON');
 			$mail->addAddress($to);
 			
 			$mail->isHTML(true);
