@@ -26,6 +26,7 @@ Médicos podem criar e gerenciar seus perfis, enquanto pacientes podem solicitar
 - **Frontend**: HTML, CSS, JavaScript
 - **Aplicativo Móvel**: Kotlin
 - **Hospedagem**: Servidor da HostGator
+- **Banco de dados**: MySql
 
 ## Hospedagem
 
