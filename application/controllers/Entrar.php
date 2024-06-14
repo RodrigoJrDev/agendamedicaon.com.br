@@ -235,7 +235,7 @@ class Entrar extends CI_Controller
 	public function layout()
 	{
 		// load views
-		$this->load->view('template/site/head', $this->data);
+		$this->load->view('template/site/head-no-nav', $this->data);
 		$this->load->view('template/site/conteudo');
 	}
 

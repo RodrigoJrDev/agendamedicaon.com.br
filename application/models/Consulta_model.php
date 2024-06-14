@@ -174,6 +174,7 @@ class Consulta_model extends CI_Model
 		$this->db->select('
 					consultas.id,
 					consultas.data_consulta,
+					consultas.id_status,
 					consultas.observacoes,
 					pacientes.nome_completo AS nome_paciente,
 					especialidades_disponiveis.nome AS especialidade,

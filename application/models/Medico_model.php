@@ -40,7 +40,7 @@ class Medico_model extends CI_Model
 	{
 		$this->db->insert($table, $data);
 		if ($this->db->affected_rows() == 1) {
-			return $this->db->insert_id(); 
+			return $this->db->insert_id();
 		}
 
 		return false;
@@ -93,17 +93,25 @@ class Medico_model extends CI_Model
 
 	public function get_by_especialidade($especialidadeId)
 	{
-			$this->db->select('medicos.id, medicos.nome_completo');
-			$this->db->from('medicos');
-			$this->db->join('especialidades', 'especialidades.id_medico = medicos.id');
-			$this->db->join('horarios_disponiveis', 'horarios_disponiveis.id_medico = medicos.id');
-			$this->db->where('especialidades.id', $especialidadeId);
-			$this->db->where('horarios_disponiveis.disponivel', 1);
-			$this->db->where('horarios_disponiveis.data_disponivel >=', date('Y-m-d'));
-			$this->db->group_by('medicos.id');
-			$query = $this->db->get();
-			return $query->result();
+		$this->db->select('medicos.id, medicos.nome_completo');
+		$this->db->from('medicos');
+		$this->db->join('especialidades', 'especialidades.id_medico = medicos.id');
+		$this->db->join('horarios_disponiveis', 'horarios_disponiveis.id_medico = medicos.id');
+		$this->db->where('especialidades.id', $especialidadeId);
+		$this->db->where('horarios_disponiveis.disponivel', 1);
+		$this->db->where('horarios_disponiveis.data_disponivel >=', date('Y-m-d'));
+		$this->db->group_by('medicos.id');
+		$query = $this->db->get();
+		return $query->result();
 	}
-	
 
+	public function get_all_medicos()
+	{
+		$this->db->select('medicos.*, especialidades_disponiveis.nome as especialidade');
+		$this->db->from('medicos');
+		$this->db->join('especialidades', 'especialidades.id_medico = medicos.id');
+		$this->db->join('especialidades_disponiveis', 'especialidades_disponiveis.id = especialidades.id');
+		$query = $this->db->get();
+		return $query->result();
+	}
 }

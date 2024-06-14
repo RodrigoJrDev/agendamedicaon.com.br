@@ -215,7 +215,6 @@
 
 				if (data.status) {
 					swal({
-						className: "swal-custom",
 						title: "Médico cadastrado com sucesso!",
 						text: data.message,
 						icon: "success",
@@ -232,7 +231,6 @@
 			},
 			error: function() {
 				swal({
-					className: "swal-custom",
 					title: "Erro no sistema!",
 					text: "Tente novamente, se o erro persistir entre em contato com o suporte.",
 					icon: "error",

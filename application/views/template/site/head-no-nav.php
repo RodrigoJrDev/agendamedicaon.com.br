@@ -33,24 +33,5 @@
 
 <body>
 
-	<header id="header" class="fixed-top">
-		<div class="container d-flex align-items-center">
-			<h1 class="logo me-auto"><a href="#hero">Agenda Médica ON</a></h1>
-
-			<nav id="navbar" class="navbar order-last order-lg-0">
-				<ul>
-					<li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-					<li><a class="nav-link scrollto" href="#about">Sobre</a></li>
-					<li><a class="nav-link scrollto" href="#services">Serviços</a></li>
-					<li><a class="nav-link scrollto" href="#departments">Departamentos</a></li>
-					<li><a class="nav-link scrollto" href="#doctors">Médicos</a></li>
-					<li><a class="nav-link scrollto" href="#gallery">Galeria</a></li>
-				</ul>
-				<i class="bi bi-list mobile-nav-toggle"></i>
-			</nav>
-
-			<a href="<?= BASE_URL(); ?>Entrar" class="appointment-btn">Entrar</a>
-		</div>
-	</header>
 
 	<main>

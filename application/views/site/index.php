@@ -2,7 +2,7 @@
 	<div class="container">
 		<h1>BEM-VINDO AO AGENDA MEDICA ON</h1>
 		<h2>Somos uma plataforma inovadora de agendamento de consultas médicas, facilitando <br> a comunicação entre médicos e pacientes.</h2>
-		<a href="#about" class="btn-get-started scrollto">Get Started</a>
+		<a href="#about" class="btn-get-started scrollto">Saiba Mais</a>
 	</div>
 </section>
 
@@ -15,9 +15,6 @@
 					<p>
 						Nosso sistema é intuitivo e fácil de navegar, permitindo que você agende consultas com apenas alguns cliques. Acesse o histórico de consultas, horários disponíveis e informações de contato de seus médicos rapidamente.
 					</p>
-					<div class="text-center">
-						<a href="#" class="more-btn">Learn More <i class="fa-solid fa-chevron-right"></i></a>
-					</div>
 				</div>
 			</div>
 			<div class="col-lg-8 d-flex align-items-stretch">
@@ -48,57 +45,50 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 </section>
 
-
 <section id="about" class="about">
 	<div class="container-fluid">
-
 		<div class="row">
 			<div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+				<!-- Aqui você pode adicionar um vídeo ou imagem -->
 			</div>
 
 			<div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-				<h3>Enim quis est voluptatibus aliquid consequatur fugiat</h3>
-				<p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed minima temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi. Libero laboriosam sint et id nulla tenetur. Suscipit aut voluptate.</p>
+				<h3>Bem-vindo à Agenda Médica ON</h3>
+				<p>Na Agenda Médica ON, nossa missão é facilitar a gestão de consultas médicas e melhorar a experiência de pacientes e profissionais de saúde. Com uma plataforma intuitiva e recursos avançados, conectamos médicos e pacientes de maneira eficiente e segura.</p>
 
 				<div class="icon-box">
 					<div class="icon"><i class="fa-solid fa-fingerprint"></i></div>
-					<h4 class="title"><a href="">Lorem Ipsum</a></h4>
-					<p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+					<h4 class="title"><a href="">Segurança e Privacidade</a></h4>
+					<p class="description">Garantimos a segurança e privacidade de todos os dados dos pacientes e profissionais de saúde em nossa plataforma.</p>
 				</div>
 
 				<div class="icon-box">
 					<div class="icon"><i class="fa-solid fa-gift"></i></div>
-					<h4 class="title"><a href="">Nemo Enim</a></h4>
-					<p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+					<h4 class="title"><a href="">Benefícios Exclusivos</a></h4>
+					<p class="description">Oferecemos benefícios exclusivos para nossos usuários, incluindo agendamento rápido e suporte 24/7.</p>
 				</div>
 
 				<div class="icon-box">
 					<div class="icon"><i class="fa-solid fa-atom"></i></div>
-					<h4 class="title"><a href="">Dine Pad</a></h4>
-					<p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
+					<h4 class="title"><a href="">Tecnologia de Ponta</a></h4>
+					<p class="description">Utilizamos tecnologia de ponta para proporcionar uma experiência de usuário fluida e eficiente, desde o agendamento até o atendimento.</p>
 				</div>
-
 			</div>
 		</div>
-
 	</div>
 </section>
 
-
 <section id="counts" class="counts">
 	<div class="container">
-
 		<div class="row">
-
 			<div class="col-lg-3 col-md-6">
 				<div class="count-box">
 					<i class="fas fa-user-md"></i>
 					<span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1" class="purecounter"></span>
-					<p>Doctors</p>
+					<p>Médicos</p>
 				</div>
 			</div>
 
@@ -106,7 +96,7 @@
 				<div class="count-box">
 					<i class="far fa-hospital"></i>
 					<span data-purecounter-start="0" data-purecounter-end="18" data-purecounter-duration="1" class="purecounter"></span>
-					<p>Departments</p>
+					<p>Departamentos</p>
 				</div>
 			</div>
 
@@ -114,7 +104,7 @@
 				<div class="count-box">
 					<i class="fas fa-flask"></i>
 					<span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter"></span>
-					<p>Research Labs</p>
+					<p>Laboratórios de Pesquisa</p>
 				</div>
 			</div>
 
@@ -122,29 +112,24 @@
 				<div class="count-box">
 					<i class="fas fa-award"></i>
 					<span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1" class="purecounter"></span>
-					<p>Awards</p>
+					<p>Prêmios</p>
 				</div>
 			</div>
-
 		</div>
-
 	</div>
 </section>
 
-
 <section id="services" class="services">
 	<div class="container">
-
 		<div class="section-title">
-			<h2>Agendamento Online </h2>
-		
+			<h2>Agendamento Online</h2>
 		</div>
 
 		<div class="row">
 			<div class="col-lg-4 col-md-6 d-flex align-items-stretch">
 				<div class="icon-box">
 					<div class="icon"><i class="fas fa-heartbeat"></i></div>
-					<h4><a href="">Lorem Ipsum</a></h4>
+					<h4><a href="">Agendamento Rápido</a></h4>
 					<p>Com um agendamento fácil e rápido, os pacientes podem marcar consultas com seus médicos preferidos sem complicações</p>
 				</div>
 			</div>
@@ -188,19 +173,14 @@
 					<p>Possibilita que os pacientes tenham acesso ao seu histórico médico completo, permitindo um acompanhamento mais eficaz de seu estado de saúde.</p>
 				</div>
 			</div>
-
 		</div>
-
 	</div>
 </section>
 
-
 <section id="departments" class="departments section-bg">
 	<div class="container">
-
 		<div class="section-title">
 			<h2>Departamentos</h2>
-			<p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
 		</div>
 
 		<div class="row gy-4">
@@ -283,13 +263,37 @@
 				</div>
 			</div>
 		</div>
+	</div>
+</section>
+
+<section id="doctors" class="doctors">
+	<div class="container">
+
+		<div class="section-title">
+			<h2>Médicos</h2>
+			<p>Conheça nossos profissionais de saúde altamente qualificados, prontos para oferecer o melhor atendimento médico para você.</p>
+		</div>
+
+		<div class="row">
+			<?php foreach ($medicos as $medico) : ?>
+				<div class="col-lg-6 mt-4">
+					<div class="member d-flex align-items-start">
+						<div class="pic"><img src="<?= base_url('assets/upload/imgs-medicos/' . $medico['imagem_usuario']); ?>" class="img-fluid" alt=""></div>
+						<div class="member-info">
+							<h4><?= $medico['nome_completo']; ?></h4>
+							<span><?php echo implode(', ', $medico['especialidades']); ?></span>
+							<p><?= $medico['bio']; ?></p>
+						</div>
+					</div>
+				</div>
+			<?php endforeach; ?>
+		</div>
 
 	</div>
 </section>
 
 <section id="gallery" class="gallery">
 	<div class="container">
-
 		<div class="section-title">
 			<h2>Galeria</h2>
 		</div>
@@ -297,7 +301,6 @@
 
 	<div class="container-fluid">
 		<div class="row g-0">
-
 			<div class="col-lg-3 col-md-4">
 				<div class="gallery-item">
 					<a href="<?= BASE_URL(); ?>assets/img/gallery/gallery-1.jpg" class="galelry-lightbox">
@@ -361,8 +364,6 @@
 					</a>
 				</div>
 			</div>
-
 		</div>
-
 	</div>
 </section>

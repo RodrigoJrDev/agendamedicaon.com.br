@@ -134,4 +134,38 @@ class Consultas extends MY_Controller
 
 		echo json_encode(["status" => "success"]);
 	}
+
+
+	public function finalizarConsulta()
+	{
+		$id_consulta = $this->input->post('id');
+
+		$consulta = $this->Consulta_model->getConsultaById($id_consulta);		
+
+		if (!$consulta) {
+			echo json_encode(["status" => "error", "message" => "Consulta não encontrada."]);
+			return;
+		}
+
+		$this->Consulta_model->updateStatus($id_consulta, 3); 
+
+		echo json_encode(["status" => "success", "message" => "Consulta finalizada com sucesso."]);
+	}
+
+	public function cancelarConsulta()
+	{
+		$id_consulta = $this->input->post('id');
+
+		$consulta = $this->Consulta_model->getConsultaById($id_consulta);		
+
+		if (!$consulta) {
+			echo json_encode(["status" => "error", "message" => "Consulta não encontrada."]);
+			return;
+		}
+
+		$this->Consulta_model->updateStatus($id_consulta, 4); 
+
+		echo json_encode(["status" => "success", "message" => "Consulta cancelada com sucesso."]);
+	}
+
 }
