@@ -47,23 +47,6 @@ A comunicação entre o aplicativo móvel e o backend é realizada através de A
 - Solicitação e aceitação de consultas.
 - Envio de e-mails de confirmação para os pacientes.
 
-## Como Contribuir
-
-Para contribuir com o projeto, siga os passos abaixo:
-
-1. Clone o repositório:
-    ```sh
-    git clone https://github.com/rodrigoJrDev/agendamedicaon.git
-    ```
-
-2. Instale as dependências necessárias:
-    ```sh
-    composer install
-    ```
-
-3. Configure o ambiente:
-    - Crie um arquivo `.env` na raiz do projeto e adicione as configurações necessárias (exemplo fornecido no arquivo `.env.example`).
-
 ## Contato
 
 - **LinkedIn**: [Rodrigo Junior](https://www.linkedin.com/in/rodrigo-junior-0128751b4/)
