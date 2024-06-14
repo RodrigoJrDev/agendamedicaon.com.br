@@ -166,25 +166,27 @@ class Api extends CI_Controller
 
 	public function solicitar_agendamento()
 	{
-		// Lendo os dados da requisição JSON
 		$input = json_decode(trim(file_get_contents("php://input")), true);
 
-		// Obtendo e sanitizando as entradas
 		$medicoId = $input['medicoId'];
 		$horarioId = $input['horarioId'];
-		$pacienteId = $input['pacienteId']; // Receber o ID do paciente diretamente na requisição
+		$pacienteId = $input['pacienteId'];
+		$especialidadeNome = $input['especialidadeNome'];
 
-		// Verificando se as entradas não estão vazias
-		if (empty($medicoId) || empty($horarioId) || empty($pacienteId)) {
+		if (empty($medicoId) || empty($horarioId) || empty($pacienteId) || empty($especialidadeNome)) {
 			echo json_encode(array("status" => "error", "message" => "Dados incompletos para agendamento."));
 			return;
 		}
 
-		// Buscando especialidade e data da consulta
-		$especialidadeId = $this->Horarios_model->get_especialidade($horarioId);
+		$especialidade = $this->db->get_where('especialidades_disponiveis', array('nome' => $especialidadeNome))->row();
+		if (!$especialidade) {
+			echo json_encode(array("status" => "error", "message" => "Especialidade não encontrada."));
+			return;
+		}
+		$especialidadeId = $especialidade->id;
+
 		$dataConsulta = $this->Horarios_model->get_data_consulta($horarioId);
 
-		// Dados para inserção
 		$data = array(
 			'id_medico' => $medicoId,
 			'id_paciente' => $pacienteId,
@@ -194,7 +196,6 @@ class Api extends CI_Controller
 			'observacoes' => 'Solicitada via aplicativo'
 		);
 
-		// Inserir a consulta e atualizar disponibilidade do horário
 		$this->db->trans_start();
 		$this->Consulta_model->insert($data);
 		$this->Horarios_model->update_disponibilidade($horarioId, 0);
@@ -206,6 +207,7 @@ class Api extends CI_Controller
 			echo json_encode(array('status' => 'success', 'message' => 'Solicitação realizada com sucesso.'));
 		}
 	}
+
 
 
 	public function getConsultasAgendadas()
@@ -231,8 +233,8 @@ class Api extends CI_Controller
 		$this->db->from('consultas');
 		$this->db->join('consultas_status', 'consultas_status.id = consultas.id_status');
 		$this->db->join('medicos', 'medicos.id = consultas.id_medico');
-		$this->db->join('especialidades', 'especialidades.id = consultas.id_especialidade');
-		$this->db->join('especialidades_disponiveis', 'especialidades_disponiveis.id = especialidades.id');
+		$this->db->join('especialidades', 'especialidades.nome = consultas.id_especialidade');
+		$this->db->join('especialidades_disponiveis', 'especialidades_disponiveis.id = consultas.id_especialidade');
 		$this->db->where('consultas.id_paciente', $id_paciente);
 		$query = $this->db->get();
 
