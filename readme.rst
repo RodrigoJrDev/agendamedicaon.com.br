@@ -1,71 +1,89 @@
-###################
-What is CodeIgniter
-###################
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+# Agenda Médica ON
 
-*******************
-Release Information
-*******************
+## Descrição
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+O projeto **Agenda Médica ON** é uma plataforma inovadora desenvolvida para facilitar a criação de perfis de médicos e a gestão de consultas médicas. A plataforma é composta por um backend desenvolvido em CodeIgniter 3 com PHP 8.2, e um aplicativo móvel desenvolvido em Kotlin. 
 
-**************************
-Changelog and New Features
-**************************
+Médicos podem criar e gerenciar seus perfis, enquanto pacientes podem solicitar consultas por meio do aplicativo móvel. A comunicação entre o backend e o aplicativo é realizada através de APIs, garantindo uma troca de informações rápida e segura.
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+## Funcionalidades
 
-*******************
-Server Requirements
-*******************
+### Para Médicos
 
-PHP version 5.6 or newer is recommended.
+- **Criação de Perfis**: Médicos podem criar e gerenciar seus perfis, incluindo informações pessoais, especialidades e horários disponíveis.
+- **Gestão de Consultas**: Médicos recebem solicitações de consultas feitas pelos pacientes através do aplicativo móvel.
+- **Aceitação de Consultas**: Médicos podem aceitar ou recusar consultas. Quando uma consulta é aceita, o paciente recebe um e-mail de confirmação.
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+### Para Pacientes
 
-************
-Installation
-************
+- **Solicitação de Consultas**: Pacientes podem solicitar consultas com médicos de diferentes especialidades através do aplicativo móvel.
+- **Confirmação de Consultas**: Após a aceitação da consulta pelo médico, o paciente recebe um e-mail de confirmação com todos os detalhes da consulta.
 
-Please see the `installation section <https://codeigniter.com/userguide3/installation/index.html>`_
-of the CodeIgniter User Guide.
+## Tecnologias Utilizadas
 
-*******
-License
-*******
+- **Backend**: CodeIgniter 3 com PHP 8.2
+- **Frontend**: HTML, CSS, JavaScript
+- **Aplicativo Móvel**: Kotlin
+- **Hospedagem**: Servidor da HostGator
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+## Hospedagem
 
-*********
-Resources
-*********
+O projeto está hospedado no servidor da HostGator e pode ser acessado pelo link:
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Contributing Guide <https://github.com/bcit-ci/CodeIgniter/blob/develop/contributing.md>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
+[https://agendamedicaon.com.br/](https://agendamedicaon.com.br/)
 
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
+## Estrutura do Projeto
 
-***************
-Acknowledgement
-***************
+- **Controladores**: Gerenciam a lógica de negócios e a interação entre o frontend e o backend.
+- **Modelos**: Representam a estrutura dos dados e interagem com o banco de dados.
+- **Views**: Responsáveis pela apresentação dos dados ao usuário final.
 
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+## API
+
+A comunicação entre o aplicativo móvel e o backend é realizada através de APIs RESTful, garantindo uma troca de informações rápida e segura. As principais funcionalidades das APIs incluem:
+
+- Criação e gestão de perfis de médicos.
+- Solicitação e aceitação de consultas.
+- Envio de e-mails de confirmação para os pacientes.
+
+## Como Contribuir
+
+Para contribuir com o projeto, siga os passos abaixo:
+
+1. Clone o repositório:
+    ```sh
+    git clone https://github.com/rodrigoJrDev/agendamedicaon.git
+    ```
+
+2. Instale as dependências necessárias:
+    ```sh
+    composer install
+    ```
+
+3. Configure o ambiente:
+    - Crie um arquivo `.env` na raiz do projeto e adicione as configurações necessárias (exemplo fornecido no arquivo `.env.example`).
+
+4. Execute as migrações para configurar o banco de dados:
+    ```sh
+    php artisan migrate
+    ```
+
+5. Inicie o servidor de desenvolvimento:
+    ```sh
+    php -S localhost:8000
+    ```
+
+## Contato
+
+- **LinkedIn**: [Rodrigo Junior](https://www.linkedin.com/in/rodrigo-junior-0128751b4/)
+- **E-mail**: rodrigojrdev@gmail.com
+- **GitHub**: [Rodrigo Junior](https://github.com/rodrigoJrDev/)
+
+## Licença
+
+Este projeto é de código aberto e está licenciado sob os termos do MIT License.
+
+---
+
+&copy; 2024 Desenvolvido por Rodrigo Junior para Faculdade FIAP. Todos os direitos reservados.
